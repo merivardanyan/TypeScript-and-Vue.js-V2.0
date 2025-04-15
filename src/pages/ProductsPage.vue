@@ -19,10 +19,11 @@
 
       <div v-if="productsQuery.data.value">
         <div v-for="product in filteredProducts" :key="product.id" class="mb-4 p-4 border rounded">
-          <img :src="product.imageUrl" alt="product.name" class="w-32 h-32 object-cover" />
-          <h3 class="text-xl">{{ product.name }}</h3>
-          <p class="text-gray-600">{{ product.price }} $</p>
-          <button @click="addToCart(product)" class="bg-blue-500 text-white p-2 mt-2 rounded">Add to Cart</button>
+          <ProductCard
+        v-for="product in productsQuery.data.value ?? []"
+        :key="product.id"
+        :product="product"
+      />
         </div>
       </div>
     </div>
@@ -34,6 +35,7 @@ import { ref, computed } from 'vue';
 import { useCategories } from '../composables/useCategories.ts';
 import { useProducts } from '../composables/useProducts';
 import CategoryCard from '../components/CategoryCard.vue';
+import ProductCard from '../components/ProductCard.vue';
 import type { Category } from '../types/category'; // if you have this type
 
 const categoriesQuery = useCategories();
@@ -54,9 +56,6 @@ const onCategorySelect = (category: any) => {
   productsQuery.refetch();
 };
 
-const addToCart = (product: any) => {
-  console.log(`${product.name} added to cart!`);
-};
 </script>
 
 <style scoped></style>
