@@ -11,7 +11,7 @@
 import { RouterView } from 'vue-router'
 import './styles/base.css';  // or wherever you saved your Tailwind CSS file
 
-import Header from './components/Header.vue'
+import Header from './layouts/Header.vue'
 </script>
 
 <style scoped></style>

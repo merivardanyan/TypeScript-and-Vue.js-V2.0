@@ -32,9 +32,7 @@ export async function getProducts(categoryId: number | null): Promise<Product[]>
     if (!response.ok) {
       throw new Error('Error fetching products');
     }
-
     const data: ApiResponse<Product> = await response.json();
-    console.log(data.items)
     return data.items;
   } catch (error) {
     console.error("Error fetching products", error);
