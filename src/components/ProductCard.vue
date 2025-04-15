@@ -1,12 +1,16 @@
 <template>
     <div class="p-4 border rounded shadow hover:shadow-md transition">
-      <img
+       <picture>
+        <img
         :src="product.imageUrl"
         :alt="product.name"
         class="w-full h-48 object-cover rounded mb-2"
-      />
+      /></picture>
+<router-link :to="`/product/${product.id}`">
+     
       <h3 class="text-lg font-semibold">{{ product.name }}</h3>
       <p class="text-gray-600 mb-2">{{ product.price }} $</p>
+    </router-link>
       <button
         class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded">
         Add to Cart
@@ -16,6 +20,7 @@
   
   <script setup lang="ts">
   import type { Product } from '../types/product';
+  
   
   defineProps<{
     product: Product;
