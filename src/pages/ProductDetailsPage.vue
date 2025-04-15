@@ -1,40 +1,35 @@
-<script setup lang="ts">
-import ProductCard from '../components/ProductCard.vue';
-import CategoryCard from '../components/CategoryCard.vue';
-import { useProducts } from '../composables/useProducts';
-import { useCategories } from '../composables/useCategories.ts';
-
-const productsQuery = useProducts();
-const categoriesQuery = useCategories();
-</script>
-
 <template>
-  <div>
-    <div class="categories">
-      <h1 class="text-2xl font-bold mb-4">Categories</h1>
-      <div v-if="categoriesQuery.isLoading.value">Loading...</div>
-      <div v-else-if="categoriesQuery.error.value">
-        Error loading categories
-      </div>
-      <div v-else class="flex flex-wrap">
-        <CategoryCard
-          v-for="category in categoriesQuery.data.value ?? []"
-          :key="category.id"
-          :category="category"
-        />
-      </div>
-    </div>
+  <div v-if="productQuery.isLoading.value" class="text-gray-500">Loading product...</div>
+  <div v-else-if="productQuery.error.value" class="text-red-500">Error loading product</div>
+  <div v-else-if="productQuery.data.value" class="p-6 max-w-3xl mx-auto">
+    <img
+      :src="productQuery.data.value.imageUrl"
+      :alt="productQuery.data.value.name"
+      class="w-full h-64 object-cover rounded mb-6"
+    />
+    <h1 class="text-3xl font-bold mb-2">{{ productQuery.data.value.name }}</h1>
+    <p class="text-xl text-gray-700 mb-4">${{ productQuery.data.value.price }}</p>
+    <p class="text-gray-600 mb-6" v-html="productQuery.data.value.description"></p>
 
-    <h1 class="text-2xl font-bold mb-4">All Products</h1>
-
-    <div v-if="productsQuery.isLoading.value">Loading...</div>
-    <div v-else-if="productsQuery.error.value">Error loading products</div>
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <ProductCard
-        v-for="product in productsQuery.data.value ?? []"
-        :key="product.id"
-        :product="product"
-      />
-    </div>
+    <button
+      @click="addToCart(productQuery.data.value)"
+      class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+    >
+      Add to Cart
+    </button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router';
+import type { Product } from '../types/product';
+import { useProduct } from '../composables/useProduct';
+const route = useRoute();
+const productId = parseInt(route.params.id as string, 10);
+const productQuery = useProduct(productId);
+
+const addToCart = (product: Product) => {
+  console.log(`${product.name} added to cart!`);
+  // You can later hook this to actual cart logic
+};
+</script>
