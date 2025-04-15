@@ -10,6 +10,7 @@ export interface Product {
   categoryIds?: number[];
   defaultCategoryId?: number;
   quantity?: number;
+  defaultDisplayedPriceFormatted?: string;
 }
 
 export interface ProductOption {

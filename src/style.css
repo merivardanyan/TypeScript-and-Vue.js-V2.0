@@ -65,6 +65,14 @@ button:focus-visible {
   text-align: center;
 }
 
+img{
+  max-width: 100%;
+}
+picture{
+  display: block;
+  font-size: 0;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

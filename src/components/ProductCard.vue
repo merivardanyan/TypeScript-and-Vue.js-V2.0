@@ -1,34 +1,49 @@
 <template>
-    <div class="p-4 border rounded shadow hover:shadow-md transition">
-       <picture>
-        <img
-        :src="product.imageUrl"
-        :alt="product.name"
-        class="w-full h-48 object-cover rounded mb-2"
-      /></picture>
-<router-link :to="`/product/${product.id}`">
-     
-      <h3 class="text-lg font-semibold">{{ product.name }}</h3>
-      <p class="text-gray-600 mb-2">{{ product.price }} $</p>
+  <div class="wrapper">
+    <router-link :to="`/product/${product.id}`">
+
+      <picture>
+        <img :src="product.imageUrl" :alt="product.name" />
+      </picture>
+      <div class="title">{{ product.name }}</div>
+
     </router-link>
-      <button
-        class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded">
-        Add to Cart
-      </button>
-    </div>
-  </template>
-  
-  <script setup lang="ts">
-  import type { Product } from '../types/product';
-  
-  
-  defineProps<{
-    product: Product;
-  }>();
-  
-  </script>
-  
-  <style scoped>
-  
-  </style>
-  
+
+    <p>{{ product.defaultDisplayedPriceFormatted }}</p>
+    <AddToCardButton :product="product" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import type { Product } from '../types/product';
+import AddToCardButton from '../components/AddToCardButton.vue';
+
+
+defineProps<{
+  product: Product;
+}>();
+
+</script>
+
+<style scoped>
+.wrapper {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper img {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1);
+}
+
+picture:hover img {
+  transform: scale(1.2);
+}
+
+</style>

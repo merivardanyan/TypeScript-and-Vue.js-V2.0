@@ -25,8 +25,8 @@ export async function getCategoryById(id: number): Promise<Category | null> {
 export async function getProducts(categoryId: number | null): Promise<Product[]> {
   try {
     const url = categoryId
-      ? `${BASE_URL}/products?category=${categoryId}`
-      : `${BASE_URL}/products`; // No category, fetch all products
+      ? `${BASE_URL}/products?category=${categoryId}&token=${TOKEN}`
+      : `${BASE_URL}/products`;
     const response = await fetch(url, { headers });
     
     if (!response.ok) {
@@ -34,6 +34,7 @@ export async function getProducts(categoryId: number | null): Promise<Product[]>
     }
 
     const data: ApiResponse<Product> = await response.json();
+    console.log(data.items)
     return data.items;
   } catch (error) {
     console.error("Error fetching products", error);
@@ -47,8 +48,3 @@ export async function getProductById(id: number): Promise<Product | null> {
   return await response.json();
 }
 
-export async function getProductsByCategory(categoryId: number): Promise<Product[]> {
-  const response = await fetch(`${BASE_URL}/products?category=${categoryId}&token=${TOKEN}`, { headers });
-  const data: ApiResponse<Product> = await response.json();
-  return data.items;
-}

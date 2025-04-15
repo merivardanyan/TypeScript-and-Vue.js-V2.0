@@ -1,4 +1,3 @@
-// src/composables/useProducts.ts
 import { useQuery } from '@tanstack/vue-query';
 import { getProducts } from '../api/ecwidApi';
 import type { Product } from '../types/product';
