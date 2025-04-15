@@ -48,7 +48,7 @@ export async function getProductById(id: number): Promise<Product | null> {
 }
 
 export async function getProductsByCategory(categoryId: number): Promise<Product[]> {
-  const response = await fetch(`${BASE_URL}/products?category=${categoryId}`, { headers });
+  const response = await fetch(`${BASE_URL}/products?category=${categoryId}&token=${TOKEN}`, { headers });
   const data: ApiResponse<Product> = await response.json();
   return data.items;
 }
