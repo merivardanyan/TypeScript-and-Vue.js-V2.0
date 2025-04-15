@@ -1,39 +1,17 @@
 <template>
     <header class="header">
-      <div class="logo">
-        <router-link to="/">
-          <!-- <img src="@/assets/logo.png" alt="Logo" /> -->
-        </router-link>
-      </div>
       <nav class="navigation">
         <router-link to="/categories" class="nav-link">Categories</router-link>
-        <router-link to="/products" class="nav-link">Products</router-link>
+        <router-link to="/" class="nav-link">Products</router-link>
       </nav>
       <div class="cart">
         <router-link to="/cart">
-          <!-- <img src="@/assets/cart-icon.png" alt="Cart" /> -->
-          <span class="cart-count">{{ cartItemCount }}</span>
         </router-link>
       </div>
     </header>
   </template>
   
   <script lang="ts">
-//   import { ref, computed } from 'vue'
-//   import { useCart } from '@/composables/useCart'
-  
-//   export default {
-//     name: 'Header',
-//     setup() {
-//       const { cartItems } = useCart()
-  
-//       const cartItemCount = computed(() => cartItems.value.length)
-  
-//       return {
-//         cartItemCount
-//       }
-//     }
-//   }
   </script>
   
   <style scoped>
