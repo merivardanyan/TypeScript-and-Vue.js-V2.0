@@ -8,22 +8,30 @@
           </router-link>
         </button>
       </div>
+      <div v-else-if="cartProducts.length === 0">
+        <div class="cart_status">Your cart is empty!</div>
 
-      <div class="cart_status" v-else-if="cartProducts.length === 0">Your cart is empty!</div>
+        <button class="sucess_home"> <router-link to="/">
+            Go to Homepage
+          </router-link>
+        </button>
+      </div>
 
       <div v-else class="row">
         <div class="col col-1 cart_items w-60">
-            <CartItem v-for="product in cartProducts" :key="product.id" :product="product"
-              @changeQuantity="changeQuantity" @removeFromCart="removeFromCart" />
+          <CartItem v-for="product in cartProducts" :key="product.id" :product="product"
+            @changeQuantity="changeQuantity" @removeFromCart="removeFromCart" />
         </div>
 
         <div class="col col-1 total w-40">
           <div class="wrapper ">
             <div class="summary">Order Summary</div>
             <div> <span class="gray_text">Total Items: </span><span class="bold_600">{{ totalItems }}</span></div>
-            <div> <span class="gray_text"> Total Price: </span><span class="bold_600">€ {{ totalPrice.toFixed(2) }}</span></div>
-          <div class="flex"><button @click="clearCart">Clear Cart</button>
-            <button v-if="totalItems > 0" @click="placeOrder">Place Order</button></div>
+            <div> <span class="gray_text"> Total Price: </span><span class="bold_600">€ {{ totalPrice.toFixed(2)
+                }}</span></div>
+            <div class="flex"><button @click="clearCart">Clear Cart</button>
+              <button v-if="totalItems > 0" @click="placeOrder">Place Order</button>
+            </div>
           </div>
         </div>
 
@@ -54,68 +62,75 @@ function placeOrder() {
 </script>
 
 <style>
-.cart_item img{
+.cart_item img {
   width: 100px;
   height: 100px;
   object-fit: contain;
   object-position: left top;
 }
 
-.cart_item{
+.cart_item {
   margin-bottom: 10px;
   padding: 10px;
   box-shadow: 1px 3px 3px #cccccc5e;
 }
 
-.quantity span{
+.quantity span {
   display: inline-block;
-    min-width: 20px;
-    padding: 7px 10px;
-    font-size: 10px;
-    margin-inline: 5px;
-    border-radius: 5px;
-    color: #545454;
-    cursor: pointer;
-    background: #f1f1f1;
+  min-width: 20px;
+  padding: 7px 10px;
+  font-size: 10px;
+  margin-inline: 5px;
+  border-radius: 5px;
+  color: #545454;
+  cursor: pointer;
+  background: #f1f1f1;
 }
 
-.remove{
+.remove {
   font-size: 22px;
   color: rgba(255, 0, 0, 0.656);
   padding-left: 10px;
   cursor: pointer;
 }
-.cart_items .title{
+
+.cart_items .title {
   font-size: 14px;
 }
-.total .wrapper{
-  
+
+.total .wrapper {
+
   background: white;
-    border: 1px solid #cccccc5e;
-    padding: 20px;
-    position: sticky;
-    top: 90px;
+  border: 1px solid #cccccc5e;
+  padding: 20px;
+  position: sticky;
+  top: 90px;
 }
-.gray_text{
+
+.gray_text {
   color: gray;
 }
-.bold_600{
+
+.bold_600 {
   font-weight: 600;
 }
 
-.total .wrapper>div{
+.total .wrapper>div {
   padding-bottom: 10px;
 }
-.total .summary{
+
+.total .summary {
   font-weight: 600;
   font-size: 18px;
   padding-bottom: 20px;
 }
-.cart_status{
+
+.cart_status {
   padding: 20px;
   text-align: center;
 }
-.sucess_home{
+
+.sucess_home {
   width: auto;
   margin: 0 auto;
 }
