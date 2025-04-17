@@ -29,7 +29,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/TypeScript-and-Vue.js-V2.0/'),
   routes,
 });
 
