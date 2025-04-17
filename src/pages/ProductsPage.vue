@@ -27,9 +27,7 @@ import CategoryCard from '../components/CategoryCard.vue';
 import ProductCard from '../components/ProductCard.vue';
 const categoriesQuery = useCategories();
 
-// 👇 this is the key part
 const productsQuery = useProducts();
-console.log(productsQuery.data)
 </script>
 
 <style scoped></style>
