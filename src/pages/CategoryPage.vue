@@ -17,7 +17,7 @@
   <div v-if="productsQuery.error.value">Error loading products</div>
 
   <div v-if="productsQuery.data.value" class="products row pt-0">
-    <div v-for="product in productsQuery.data.value" :key="product.id" class="col col-1 col-sm-2 col-md-3 col-lg-4">
+    <div v-for="product in productsQuery.data.value" :key="product.id" class="col col-1 col-sm-2 col-md-3 col-lg-5">
       <ProductCard :product="product" />
     </div>
   </div>
