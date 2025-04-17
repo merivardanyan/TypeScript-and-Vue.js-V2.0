@@ -46,17 +46,21 @@ const { totalItems: cartItemCount } = useCart()
     color: white;
     font-size: 10px;
     border-radius: 50%;
-    padding: 2px 6px;
     position: absolute;
     top: -50%;
-    left: 50%;
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
 }
 header{
   position: fixed;
   width: 100%;
   z-index: 777;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.531);
   backdrop-filter: blur(7px);
+  box-shadow: 0 2px 4px rgba(97, 97, 97, 0.3);
 }
 .relative{
   position: relative;
