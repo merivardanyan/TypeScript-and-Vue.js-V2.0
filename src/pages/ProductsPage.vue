@@ -1,23 +1,19 @@
 <template>
     <div class="row">
-        <div class="title ">Categories</div>
+        <div class="col">
+          <div class="title ">Categories</div>
+        </div>
     </div>
-    <div v-if="categoriesQuery.isLoading.value">Loading categories...</div>
-    <div v-if="categoriesQuery.error.value">Error loading categories</div>
-
+    <div v-if="categoriesQuery.isLoading.value"><i class="pi pi-spin pi-spinner"></i></div>
     <div v-if="categoriesQuery.data" class="row pt-0">
-
       <CategoryCard v-for="category in categoriesQuery.data.value" :key="category.id" :category="category"
-        class="col col-1 col-sm-2 pt-0" />
-
+        class="col pt-0" />
     </div>
-
     <div>
-      <div v-if="productsQuery.isLoading.value">Loading products...</div>
-      <div v-if="productsQuery.error.value">Error loading products</div>
-
+      <div v-if="productsQuery.isLoading.value"><i class="pi pi-spin pi-spinner"></i></div>
+      <div v-if="productsQuery.error.value">No products</div>
       <div v-if="productsQuery.data.value" class="products row pt-0">
-        <div v-for="product in productsQuery.data.value" :key="product.id" class="col col-1 col-sm-2 col-md-3 col-lg-4">
+        <div v-for="product in productsQuery.data.value" :key="product.id" class="col col-1 col-sm-2 col-md-3 col-lg-5">
           <ProductCard :product="product" />
         </div>
       </div>
@@ -33,7 +29,7 @@ const categoriesQuery = useCategories();
 
 // 👇 this is the key part
 const productsQuery = useProducts();
-
+console.log(productsQuery.data)
 </script>
 
 <style scoped></style>
