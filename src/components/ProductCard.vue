@@ -38,7 +38,7 @@
   }
   
   .wrapper div{
-    padding: 5px;
+    padding: 5px 15px;
   }
   .wrapper .title{
     padding-top: 10px;

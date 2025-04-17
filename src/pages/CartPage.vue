@@ -12,12 +12,12 @@
       <div class="cart_status" v-else-if="cartProducts.length === 0">Your cart is empty!</div>
 
       <div v-else class="row">
-        <div class="col col-1 cart_items w-40">
+        <div class="col col-1 cart_items w-60">
             <CartItem v-for="product in cartProducts" :key="product.id" :product="product"
               @changeQuantity="changeQuantity" @removeFromCart="removeFromCart" />
         </div>
 
-        <div class="col col-1 total w-60">
+        <div class="col col-1 total w-40">
           <div class="wrapper ">
             <div class="summary">Order Summary</div>
             <div> <span class="gray_text">Total Items: </span><span class="bold_600">{{ totalItems }}</span></div>
