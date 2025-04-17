@@ -43,6 +43,13 @@ const addToCart = (product: Product) => {
   }
 };
 
+const changeQuantity = (Product: Product, quantity: number) => {
+  const existing = cart.value.find(item => item.id === Product.id);
+  if (existing && existing.quantity + quantity > 0) {
+    existing.quantity += quantity;
+  }
+}
+
 const removeFromCart = (id: number) => {
   cart.value = cart.value.filter(item => item.id !== id);
 };
@@ -59,6 +66,7 @@ export function useCart() {
     removeFromCart,
     clearCart,
     totalItems,
-    totalPrice
+    totalPrice,
+    changeQuantity
   };
 }
